@@ -14,13 +14,18 @@
 
 use crate::fmt;
 use crate::iter::Sum;
-use crate::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign};
+use crate::ops::{
+    Add, AddAssign, 
+    Div, DivAssign, 
+    Mul, MulAssign, 
+    Sub, SubAssign
+};
 
-const NANOS_PER_SEC: u32 = 1_000_000_000;
-const NANOS_PER_MILLI: u32 = 1_000_000;
-const NANOS_PER_MICRO: u32 = 1_000;
-const MILLIS_PER_SEC: u64 = 1_000;
-const MICROS_PER_SEC: u64 = 1_000_000;
+pub const NANOS_PER_SEC: u32 = 1_000_000_000;
+pub const NANOS_PER_MILLI: u32 = 1_000_000;
+pub const NANOS_PER_MICRO: u32 = 1_000;
+pub const MILLIS_PER_SEC: u64 = 1_000;
+pub const MICROS_PER_SEC: u64 = 1_000_000;
 
 /// A `Duration` type to represent a span of time, typically used for system
 /// timeouts.
@@ -714,7 +719,7 @@ impl Duration {
     #[inline]
     #[rustc_const_unstable(feature = "duration_consts_2", issue = "72440")]
     pub const fn from_secs_f32(secs: f32) -> Duration {
-        const MAX_NANOS_F32: f32 = ((u64::MAX as u128 + 1) * (NANOS_PER_SEC as u128)) as f32;
+        pub const MAX_NANOS_F32: f32 = ((u64::MAX as u128 + 1) * (NANOS_PER_SEC as u128)) as f32;
         let nanos = secs * (NANOS_PER_SEC as f32);
         if !nanos.is_finite() {
             panic!("got non-finite value when converting float to duration");
